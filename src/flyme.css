@@ -1,0 +1,170 @@
+/* FlyMe Search Page Styles */
+
+/* 全局样式 */
+.flyme-search {
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #121417;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 导航栏样式 */
+.flyme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  border-bottom: 1px solid #E5E8EB;
+}
+
+.flyme-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flyme-logo {
+  width: 14px;
+  height: 14px;
+}
+
+.flyme-nav {
+  display: flex;
+  align-items: center;
+}
+
+.flyme-nav-links {
+  display: flex;
+  gap: 24px;
+  margin-right: 24px;
+}
+
+.flyme-nav-link {
+  color: #121417;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.flyme-login-btn {
+  background-color: #F1F4F8;
+  color: #121417;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 主内容区域样式 */
+.flyme-main {
+  flex: 1;
+  padding: 40px;
+}
+
+.flyme-search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 搜索卡片样式 */
+.flyme-search-card {
+  background-color: #F8FAFC;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.flyme-search-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #121417;
+}
+
+.flyme-search-subtitle {
+  font-size: 14px;
+  color: #121417;
+  margin-bottom: 24px;
+}
+
+.flyme-search-button {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* 搜索表单样式 */
+.flyme-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-form-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.flyme-form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.flyme-form-label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #121417;
+}
+
+.flyme-form-input {
+  background-color: #F1F4F8;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #637887;
+  width: 100%;
+}
+
+.flyme-form-select {
+  background-color: #F1F4F8;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #637887;
+  width: 100%;
+  appearance: none;
+  background-image: url('../assets/figma/dropdown-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .flyme-header {
+    padding: 12px 20px;
+  }
+  
+  .flyme-main {
+    padding: 20px;
+  }
+  
+  .flyme-form-row {
+    flex-direction: column;
+  }
+}
