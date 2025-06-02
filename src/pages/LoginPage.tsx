@@ -1,77 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../flyme.css';
+import FlymeNavbar from '../components/FlymeNavbar';
+
+// 导入SVG图标
+import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
 
 const LoginPage: React.FC = () => {
+  // 状态管理
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // 处理表单提交
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ username, password });
+    // 这里可以添加登录逻辑
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link to="/" className="font-medium text-blue-600 hover:text-blue-500">
-              go back to homepage
-            </Link>
-          </p>
+    <div className="flyme-search">
+      {/* 使用共通导航栏组件 */}
+      <FlymeNavbar 
+        navItems={[
+          { id: 'book', label: 'Book', path: '/search' },
+          { id: 'manage', label: 'Manage', path: '/my-bookings' },
+          { id: 'help', label: 'Help', path: '/help' }
+        ]}
+      />
+
+      {/* 主内容区域 */}
+      <main className="flyme-main">
+        <div className="flex justify-center items-stretch w-full flyme-content-padding">
+          <div className="flex flex-col items-center flyme-login-container">
+            {/* 欢迎标题 */}
+            <div className="flyme-login-title-container">
+              <h1 className="flyme-login-title">Welcome back</h1>
+            </div>
+
+            {/* 登录表单 */}
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
+              {/* 用户名/邮箱输入框 */}
+              <div className="flyme-login-form-group">
+                <div className="flyme-login-input-container">
+                  <div className="flyme-login-label-container">
+                    <label className="flyme-login-label">Username or email</label>
+                  </div>
+                  <div className="flyme-login-input-wrapper">
+                    <input
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="Enter your username or email"
+                      className="flyme-login-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 密码输入框 */}
+              <div className="flyme-login-form-group">
+                <div className="flyme-login-input-container">
+                  <div className="flyme-login-label-container">
+                    <label className="flyme-login-label">Password</label>
+                  </div>
+                  <div className="flyme-login-input-wrapper">
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Enter your password"
+                      className="flyme-login-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 忘记用户名或密码链接 */}
+              <div className="flyme-login-forgot-container">
+                <Link to="/forgot-password" className="flyme-login-forgot-link">Forgot username or password?</Link>
+              </div>
+
+              {/* 登录按钮 */}
+              <div className="flyme-login-button-container">
+                <button
+                  type="submit"
+                  className="flyme-login-button"
+                >
+                  <span className="flyme-login-button-text">Log in</span>
+                </button>
+              </div>
+
+              {/* 注册链接 */}
+              <div className="flyme-login-signup-container">
+                <p className="flyme-login-signup-text">Don't have an account? <Link to="/register" className="text-[#6B7882]">Sign up</Link></p>
+              </div>
+            </form>
+          </div>
         </div>
-        <form className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">Email address</label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                Forgot your password?
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
-      </div>
+      </main>
     </div>
   );
 };
