@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 
-// 导入SVG图标
-import logoSvg from '../assets/figma/logo.svg';
+// 导入组件
+import FlymeNavbar from '../components/FlymeNavbar';
 
 interface TripType {
   value: string;
@@ -16,6 +16,8 @@ interface Location {
 }
 
 const FlymeSearchPage: React.FC = () => {
+  const navigate = useNavigate();
+  
   // 定义状态
   const [tripType, setTripType] = useState<string>('roundtrip');
   const [fromLocation, setFromLocation] = useState<string>('');
@@ -50,26 +52,14 @@ const FlymeSearchPage: React.FC = () => {
       returnDate,
       passengers
     });
-    // 这里可以添加导航到搜索结果页面的逻辑
+    // 导航到航班选择页面
+    navigate('/outbound');
   };
 
   return (
     <div className="flyme-search">
-      {/* 导航栏 */}
-      <header className="flyme-header">
-        <div className="flyme-logo-container">
-          <img src={logoSvg} alt="FlyMe Logo" className="flyme-logo" />
-          <span>FlyMe</span>
-        </div>
-        
-        <div className="flyme-nav">
-          <div className="flyme-nav-links">
-            <Link to="/" className="flyme-nav-link">Book</Link>
-            <Link to="/my-bookings" className="flyme-nav-link">Manage</Link>
-          </div>
-          <Link to="/login" className="flyme-login-btn">Log in</Link>
-        </div>
-      </header>
+      {/* 使用共通导航栏组件 */}
+      <FlymeNavbar activePage="book" />
 
       {/* 主内容区域 */}
       <main className="flyme-main">

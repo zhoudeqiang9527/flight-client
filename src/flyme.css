@@ -48,6 +48,11 @@
   font-weight: 500;
 }
 
+.flyme-nav-link-active {
+  color: #3B82F6;
+  font-weight: 600;
+}
+
 .flyme-login-btn {
   background-color: #F1F4F8;
   color: #121417;
@@ -166,5 +171,171 @@
   
   .flyme-form-row {
     flex-direction: column;
+  }
+}
+
+/* Outbound页面样式 */
+
+/* 容器样式 */
+.flyme-outbound-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 面包屑导航 */
+.flyme-breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.flyme-breadcrumb-link {
+  color: #637887;
+  text-decoration: none;
+}
+
+.flyme-breadcrumb-separator {
+  margin: 0 8px;
+  color: #637887;
+}
+
+.flyme-breadcrumb-current {
+  color: #121417;
+  font-weight: 500;
+}
+
+/* 页面标题 */
+.flyme-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #121417;
+}
+
+/* 航班列表 */
+.flyme-flight-list {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+/* 航班表头 */
+.flyme-flight-header {
+  display: flex;
+  padding: 16px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E8EB;
+}
+
+.flyme-flight-header-item {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #121417;
+}
+
+/* 航班项 */
+.flyme-flight-item {
+  display: flex;
+  padding: 16px;
+  border-bottom: 1px solid #E5E8EB;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.flyme-flight-item:last-child {
+  border-bottom: none;
+}
+
+.flyme-flight-item:hover {
+  background-color: #F8FAFC;
+}
+
+.flyme-flight-selected {
+  background-color: #F0F7FF;
+  border-left: 3px solid #3B82F6;
+}
+
+.flyme-flight-cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #121417;
+}
+
+/* 航空公司样式 */
+.flyme-flight-airline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flyme-airline-logo-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flyme-airline-logo {
+  width: 12px;
+  height: 12px;
+}
+
+/* 价格样式 */
+.flyme-flight-price {
+  font-weight: 700;
+}
+
+/* 继续按钮容器 */
+.flyme-continue-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* 继续按钮 */
+.flyme-continue-button {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.flyme-continue-button:hover {
+  background-color: #2563EB;
+}
+
+.flyme-continue-button:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .flyme-flight-item,
+  .flyme-flight-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .flyme-flight-cell {
+    justify-content: space-between;
+  }
+  
+  .flyme-flight-cell::before {
+    content: attr(data-label);
+    font-weight: 500;
   }
 }
