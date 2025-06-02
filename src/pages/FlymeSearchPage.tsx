@@ -59,7 +59,14 @@ const FlymeSearchPage: React.FC = () => {
   return (
     <div className="flyme-search">
       {/* 使用共通导航栏组件 */}
-      <FlymeNavbar activePage="book" />
+      <FlymeNavbar 
+        activePage="book" 
+        navItems={[
+          { id: 'book', label: 'Book', path: '/search' },
+          { id: 'manage', label: 'Manage', path: '/my-bookings' },
+          { id: 'help', label: 'Help', path: '/help' }
+        ]}
+      />
 
       {/* 主内容区域 */}
       <main className="flyme-main">

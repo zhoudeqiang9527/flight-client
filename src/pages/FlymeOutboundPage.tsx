@@ -64,17 +64,23 @@ const FlymeOutboundPage: React.FC = () => {
 
   // 处理继续按钮点击
   const handleContinue = () => {
-    const selectedFlight = flights.find(flight => flight.selected);
-    if (selectedFlight) {
-      console.log('Selected flight:', selectedFlight);
-      // 这里可以添加导航到下一步的逻辑
+    if (flights.some(flight => flight.selected)) {
+      // 导航到Review页面
+      window.location.href = '/review';
     }
   };
 
   return (
     <div className="flyme-search">
       {/* 使用共通导航栏组件 */}
-      <FlymeNavbar activePage="book" />
+      <FlymeNavbar 
+        activePage="book" 
+        navItems={[
+          { id: 'book', label: 'Book', path: '/search' },
+          { id: 'manage', label: 'Manage', path: '/my-bookings' },
+          { id: 'help', label: 'Help', path: '/help' }
+        ]}
+      />
 
       {/* 主内容区域 */}
       <main className="flyme-main">

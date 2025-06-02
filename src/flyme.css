@@ -339,3 +339,118 @@
     font-weight: 500;
   }
 }
+
+/* Review页面样式 */
+.flyme-review-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.flyme-review-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.flyme-review-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-review-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #121417;
+  margin: 0;
+}
+
+.flyme-review-flight-card {
+  display: flex;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flyme-review-flight-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flyme-review-flight-cabin {
+  font-size: 14px;
+  color: #637887;
+}
+
+.flyme-review-flight-route {
+  font-size: 16px;
+  font-weight: 600;
+  color: #121417;
+}
+
+.flyme-review-flight-datetime {
+  font-size: 14px;
+  color: #637887;
+}
+
+.flyme-review-flight-airline-indicator {
+  width: 8px;
+  background-color: #3B82F6;
+}
+
+.flyme-review-flight-airline-indicator.green {
+  background-color: #10B981;
+}
+
+.flyme-review-fare-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-review-fare-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #121417;
+}
+
+.flyme-review-fare-divider {
+  height: 1px;
+  background-color: #E5E8EB;
+  margin: 8px 0;
+}
+
+.flyme-review-fare-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  color: #121417;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .flyme-review-container {
+    padding: 0 16px;
+  }
+  
+  .flyme-review-flight-card {
+    flex-direction: column;
+  }
+  
+  .flyme-review-flight-airline-indicator {
+    width: 100%;
+    height: 4px;
+  }
+}
