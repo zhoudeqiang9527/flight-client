@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
+import http from '../services/http';
 
 // 导入SVG图标
 import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
 
 const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
   // 状态管理
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   // 处理表单提交
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ username, password });
-    // 这里可以添加登录逻辑
+    setIsLoading(true);
+    setError('');
+    
+    try {
+      const { data } = await http.post<{ token: string }>('/auth/login', {
+        username,
+        password
+      });
+      
+      // 保存token并跳转到首页
+      localStorage.setItem('token', data.token);
+      navigate('/');
+    } catch (err) {
+      setError('Login failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -81,13 +100,25 @@ const LoginPage: React.FC = () => {
                 <Link to="/forgot-password" className="flyme-login-forgot-link">Forgot username or password?</Link>
               </div>
 
+              {/* 错误信息显示 */}
+              {error && (
+                <div className="flyme-login-error">
+                  {error}
+                </div>
+              )}
+
               {/* 登录按钮 */}
               <div className="flyme-login-button-container">
                 <button
                   type="submit"
                   className="flyme-login-button"
+                  disabled={isLoading}
                 >
-                  <span className="flyme-login-button-text">Log in</span>
+                  {isLoading ? (
+                    <span className="flyme-login-button-loading">Logging in...</span>
+                  ) : (
+                    <span className="flyme-login-button-text">Log in</span>
+                  )}
                 </button>
               </div>
 

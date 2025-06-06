@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FlymeNavbar from '../components/FlymeNavbar';
 
 interface Booking {
   id: string;
@@ -41,60 +42,57 @@ const MyBookingsPage: React.FC = () => {
 
   const getStatusColor = (status: Booking['status']) => {
     switch (status) {
-      case 'confirmed': return 'bg-green-100 text-green-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
-      case 'completed': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-blue-100 text-blue-800';
+      case 'confirmed': return 'flyme-status-confirmed';
+      case 'cancelled': return 'flyme-status-cancelled';
+      case 'completed': return 'flyme-status-completed';
+      default: return 'flyme-status-default';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="flyme-main">
       {/* Header */}
-      <header className="bg-blue-600 text-white shadow-lg">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">FlyMe</h1>
-          <nav className="flex space-x-4">
-            <Link to="/" className="hover:underline font-medium">Home</Link>
-            <Link to="/my-bookings" className="hover:underline font-medium">My Bookings</Link>
-            <Link to="/login" className="hover:underline font-medium">Login</Link>
-          </nav>
-        </div>
-      </header>
+      <FlymeNavbar 
+        activePage="manage"
+        navItems={[
+          { id: 'book', label: 'Home', path: '/' },
+          { id: 'manage', label: 'My Bookings', path: '/my-bookings' }
+        ]}
+      />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-6 text-gray-800">My Bookings</h2>
+      <main className="flyme-container">
+        <h2 className="flyme-page-title">My Bookings</h2>
         
         {bookings.length > 0 ? (
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="flyme-card">
+            <table className="flyme-table">
+              <thead>
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Booking ID</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Flight</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th>Booking ID</th>
+                  <th>Flight</th>
+                  <th>Route</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody>
                 {bookings.map((booking) => (
                   <tr key={booking.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{booking.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.flightNumber}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.from} to {booking.to}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.date}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(booking.status)}`}>
+                    <td>{booking.id}</td>
+                    <td>{booking.flightNumber}</td>
+                    <td>{booking.from} to {booking.to}</td>
+                    <td>{booking.date}</td>
+                    <td>
+                      <span className={`flyme-status ${getStatusColor(booking.status)}`}>
                         {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-blue-600 hover:text-blue-900 mr-3">View Details</button>
+                    <td>
+                      <button className="flyme-button">View Details</button>
                       {booking.status === 'confirmed' && (
-                        <button className="text-red-600 hover:text-red-900">Cancel</button>
+                        <button className="flyme-button flyme-button-danger">Cancel</button>
                       )}
                     </td>
                   </tr>
@@ -103,9 +101,9 @@ const MyBookingsPage: React.FC = () => {
             </table>
           </div>
         ) : (
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <p className="text-gray-600 mb-4">You don't have any bookings yet.</p>
-            <Link to="/" className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+          <div className="flyme-empty-state">
+            <p>You don't have any bookings yet.</p>
+            <Link to="/" className="flyme-button">
               Book a Flight
             </Link>
           </div>
@@ -113,30 +111,28 @@ const MyBookingsPage: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 mt-auto">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">FlyMe</h3>
-              <p className="text-gray-400">Your trusted partner for flight bookings worldwide.</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-gray-400 hover:text-white">Home</Link></li>
-                <li><Link to="/my-bookings" className="text-gray-400 hover:text-white">My Bookings</Link></li>
-                <li><Link to="/login" className="text-gray-400 hover:text-white">Login</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Contact Us</h4>
-              <p className="text-gray-400">Email: support@flyme.com</p>
-              <p className="text-gray-400">Phone: +1 (555) 123-4567</p>
-            </div>
+      <footer className="flyme-footer">
+        <div className="flyme-footer-content">
+          <div className="flyme-footer-section">
+            <h3>FlyMe</h3>
+            <p>Your trusted partner for flight bookings worldwide.</p>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} FlyMe. All rights reserved.</p>
+          <div className="flyme-footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/my-bookings">My Bookings</Link></li>
+              <li><Link to="/login">Login</Link></li>
+            </ul>
           </div>
+          <div className="flyme-footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: support@flyme.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+          </div>
+        </div>
+        <div className="flyme-footer-copyright">
+          <p>&copy; {new Date().getFullYear()} FlyMe. All rights reserved.</p>
         </div>
       </footer>
     </div>
