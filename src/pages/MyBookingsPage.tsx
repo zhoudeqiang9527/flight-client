@@ -1,100 +1,101 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface Booking {
-  id: string;
-  flightNumber: string;
-  from: string;
-  to: string;
-  date: string;
-  status: 'confirmed' | 'cancelled' | 'completed';
-}
-
 const MyBookingsPage: React.FC = () => {
-  // Mock data for bookings
-  const bookings: Booking[] = [
+  // 模拟预订数据
+  const bookings = [
     {
-      id: 'BK001',
-      flightNumber: 'FL123',
-      from: 'New York',
-      to: 'London',
-      date: '2023-12-15',
-      status: 'confirmed'
+      id: 'BK12345',
+      route: 'London to Paris',
+      date: '2023-10-15',
+      status: 'confirmed',
+      price: '£120',
     },
     {
-      id: 'BK002',
-      flightNumber: 'FL456',
-      from: 'Paris',
-      to: 'Tokyo',
+      id: 'BK12346',
+      route: 'Paris to Rome',
       date: '2023-11-20',
-      status: 'completed'
+      status: 'confirmed',
+      price: '£180',
     },
     {
-      id: 'BK003',
-      flightNumber: 'FL789',
-      from: 'Sydney',
-      to: 'Dubai',
-      date: '2024-01-10',
-      status: 'confirmed'
-    }
+      id: 'BK12347',
+      route: 'Rome to Madrid',
+      date: '2023-09-05',
+      status: 'completed',
+      price: '£150',
+    },
+    {
+      id: 'BK12348',
+      route: 'Madrid to Berlin',
+      date: '2023-12-10',
+      status: 'cancelled',
+      price: '£200',
+    },
   ];
 
-  const getStatusColor = (status: Booking['status']) => {
-    switch (status) {
-      case 'confirmed': return 'bg-green-100 text-green-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
-      case 'completed': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-blue-100 text-blue-800';
-    }
-  };
+  // 判断是否有预订
+  const hasBookings = bookings.length > 0;
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-blue-600 text-white shadow-lg">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">FlyMe</h1>
-          <nav className="flex space-x-4">
-            <Link to="/" className="hover:underline font-medium">Home</Link>
-            <Link to="/my-bookings" className="hover:underline font-medium">My Bookings</Link>
-            <Link to="/login" className="hover:underline font-medium">Login</Link>
+    <div className="flyme-mybookings-container">
+      {/* 头部 */}
+      <header className="flyme-header">
+        <div className="flyme-header-container">
+          <div className="flyme-header-title">FlyMe</div>
+          <nav className="flyme-header-nav">
+            <Link to="/" className="flyme-header-link">Home</Link>
+            <Link to="/my-bookings" className="flyme-header-link">My Bookings</Link>
+            <Link to="/login" className="flyme-header-link">Login</Link>
           </nav>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-6 text-gray-800">My Bookings</h2>
-        
-        {bookings.length > 0 ? (
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+      {/* 主内容 */}
+      <main className="flyme-main">
+        <h1 className="flyme-mybookings-title">My Bookings</h1>
+
+        {hasBookings ? (
+          <div className="flyme-mybookings-table-container">
+            <table className="flyme-mybookings-table">
+              <thead className="flyme-mybookings-table-header">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Booking ID</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Flight</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="flyme-mybookings-table-th">Booking ID</th>
+                  <th className="flyme-mybookings-table-th">Route</th>
+                  <th className="flyme-mybookings-table-th">Date</th>
+                  <th className="flyme-mybookings-table-th">Price</th>
+                  <th className="flyme-mybookings-table-th">Status</th>
+                  <th className="flyme-mybookings-table-th">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="flyme-mybookings-table-body">
                 {bookings.map((booking) => (
-                  <tr key={booking.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{booking.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.flightNumber}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.from} to {booking.to}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{booking.date}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(booking.status)}`}>
+                  <tr key={booking.id} className="flyme-mybookings-table-row">
+                    <td className="flyme-mybookings-table-td">
+                      <span className="flyme-mybookings-id">{booking.id}</span>
+                    </td>
+                    <td className="flyme-mybookings-table-td">
+                      <span className="flyme-mybookings-text">{booking.route}</span>
+                    </td>
+                    <td className="flyme-mybookings-table-td">
+                      <span className="flyme-mybookings-text">{booking.date}</span>
+                    </td>
+                    <td className="flyme-mybookings-table-td">
+                      <span className="flyme-mybookings-text">{booking.price}</span>
+                    </td>
+                    <td className="flyme-mybookings-table-td">
+                      <span className={`flyme-mybookings-status flyme-mybookings-status-${booking.status}`}>
                         {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-blue-600 hover:text-blue-900 mr-3">View Details</button>
+                    <td className="flyme-mybookings-table-td">
+                      <button className="flyme-mybookings-action-button flyme-mybookings-view-button">
+                        View
+                      </button>
                       {booking.status === 'confirmed' && (
-                        <button className="text-red-600 hover:text-red-900">Cancel</button>
+                        <button className="flyme-mybookings-action-button flyme-mybookings-cancel-button">
+                          Cancel
+                        </button>
                       )}
                     </td>
                   </tr>
@@ -103,39 +104,43 @@ const MyBookingsPage: React.FC = () => {
             </table>
           </div>
         ) : (
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <p className="text-gray-600 mb-4">You don't have any bookings yet.</p>
-            <Link to="/" className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+          <div className="flyme-mybookings-empty">
+            <p className="flyme-mybookings-empty-text">You don't have any bookings yet.</p>
+            <Link to="/" className="flyme-mybookings-book-button">
               Book a Flight
             </Link>
           </div>
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 mt-auto">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* 底部 */}
+      <footer className="flyme-footer">
+        <div className="flyme-footer-container">
+          <div className="flyme-footer-grid">
             <div>
-              <h3 className="text-xl font-bold mb-4">FlyMe</h3>
-              <p className="text-gray-400">Your trusted partner for flight bookings worldwide.</p>
+              <h2 className="flyme-footer-title">FlyMe</h2>
+              <p className="flyme-footer-text">Making air travel accessible and enjoyable for everyone.</p>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-gray-400 hover:text-white">Home</Link></li>
-                <li><Link to="/my-bookings" className="text-gray-400 hover:text-white">My Bookings</Link></li>
-                <li><Link to="/login" className="text-gray-400 hover:text-white">Login</Link></li>
+              <h3 className="flyme-footer-subtitle">Quick Links</h3>
+              <ul className="flyme-footer-list">
+                <li><Link to="/" className="flyme-footer-link">Home</Link></li>
+                <li><Link to="/about" className="flyme-footer-link">About Us</Link></li>
+                <li><Link to="/contact" className="flyme-footer-link">Contact</Link></li>
+                <li><Link to="/faq" className="flyme-footer-link">FAQ</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4">Contact Us</h4>
-              <p className="text-gray-400">Email: support@flyme.com</p>
-              <p className="text-gray-400">Phone: +1 (555) 123-4567</p>
+              <h3 className="flyme-footer-subtitle">Legal</h3>
+              <ul className="flyme-footer-list">
+                <li><Link to="/terms" className="flyme-footer-link">Terms of Service</Link></li>
+                <li><Link to="/privacy" className="flyme-footer-link">Privacy Policy</Link></li>
+                <li><Link to="/cookies" className="flyme-footer-link">Cookie Policy</Link></li>
+              </ul>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} FlyMe. All rights reserved.</p>
+          <div className="flyme-footer-divider">
+            &copy; {new Date().getFullYear()} FlyMe. All rights reserved.
           </div>
         </div>
       </footer>
