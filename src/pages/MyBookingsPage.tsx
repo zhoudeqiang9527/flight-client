@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FlymeNavbar from '../components/FlymeNavbar';
 
 const MyBookingsPage: React.FC = () => {
   // 模拟预订数据
@@ -39,17 +40,8 @@ const MyBookingsPage: React.FC = () => {
 
   return (
     <div className="flyme-mybookings-container">
-      {/* 头部 */}
-      <header className="flyme-header">
-        <div className="flyme-header-container">
-          <div className="flyme-header-title">FlyMe</div>
-          <nav className="flyme-header-nav">
-            <Link to="/" className="flyme-header-link">Home</Link>
-            <Link to="/my-bookings" className="flyme-header-link">My Bookings</Link>
-            <Link to="/login" className="flyme-header-link">Login</Link>
-          </nav>
-        </div>
-      </header>
+      {/* 头部 - 使用共通导航栏组件 */}
+      <FlymeNavbar activePage="manage" />
 
       {/* 主内容 */}
       <main className="flyme-main">
