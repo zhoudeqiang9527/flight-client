@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 
 // 导入SVG图标
 import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+import http from '../services/http';
 
 const LoginPage: React.FC = () => {
   // 状态管理
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   // 处理表单提交
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ username, password });
-    // 这里可以添加登录逻辑
+    try {
+       const response = await http.post<LoginResponse>('/auth/login', { username, password });
+       console.log(response);
+       localStorage.setItem('token', response.data.token);
+       navigate('/search');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

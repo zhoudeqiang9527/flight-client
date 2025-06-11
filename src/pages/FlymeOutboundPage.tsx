@@ -1,59 +1,33 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import '../flyme.css';
-
+import http from '../services/http';
 // 导入组件
 import FlymeNavbar from '../components/FlymeNavbar';
 
 // 导入SVG图标
 import airlineLogoSvg from '../assets/figma/airline-logo.svg';
 
-interface Flight {
-  id: string;
-  airline: string;
-  departureTime: string;
-  arrivalTime: string;
-  duration: string;
-  stops: string;
-  price: number;
-  selected?: boolean;
-}
+
 
 const FlymeOutboundPage: React.FC = () => {
   // 模拟航班数据
-  const [flights, setFlights] = useState<Flight[]>([
-    {
-      id: '1',
-      airline: 'Skybound',
-      departureTime: '10:00 AM',
-      arrivalTime: '1:00 PM',
-      duration: '3h',
-      stops: 'Non-stop',
-      price: 320,
-      selected: false
-    },
-    {
-      id: '2',
-      airline: 'Skybound',
-      departureTime: '12:30 PM',
-      arrivalTime: '3:30 PM',
-      duration: '3h',
-      stops: 'Non-stop',
-      price: 290,
-      selected: false
-    },
-    {
-      id: '3',
-      airline: 'Skybound',
-      departureTime: '3:45 PM',
-      arrivalTime: '6:45 PM',
-      duration: '3h',
-      stops: 'Non-stop',
-      price: 310,
-      selected: false
-    }
-  ]);
+  const [flights, setFlights] = useState<Flight[]>([]);
 
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const fetchFlights = async () => {
+        const from = searchParams.get('from') || '';
+        const to = searchParams.get('to') || '';
+        const date = searchParams.get('date') || '';
+      const response = await http.post<FlgihtResponse>('/api/flights', { from, to, date });
+      const data = response.data;
+      setFlights(data);
+    };
+    fetchFlights();
+  }, []);
   // 处理航班选择
   const handleFlightSelect = (id: string) => {
     setFlights(flights.map(flight => ({
@@ -66,7 +40,7 @@ const FlymeOutboundPage: React.FC = () => {
   const handleContinue = () => {
     if (flights.some(flight => flight.selected)) {
       // 导航到Review页面
-      window.location.href = '/review';
+      navigate('/review');
     }
   };
 
@@ -91,7 +65,7 @@ const FlymeOutboundPage: React.FC = () => {
             <span className="flyme-breadcrumb-separator">/</span>
             <Link to="/search" className="flyme-breadcrumb-link">Flights</Link>
             <span className="flyme-breadcrumb-separator">/</span>
-            <span className="flyme-breadcrumb-current">London to New York</span>
+            <span className="flyme-breadcrumb-current">{from || 'Unknown'} to {to || 'Unknown'}</span>
           </div>
 
           {/* 页面标题 */}
@@ -122,7 +96,9 @@ const FlymeOutboundPage: React.FC = () => {
                   </div>
                   <span>{flight.airline}</span>
                 </div>
-                <div className="flyme-flight-cell">{flight.departureTime}</div>
+                <div className="flyme-flight-cell">
+                    {flight.departure_airport_id}
+                </div>
                 <div className="flyme-flight-cell">{flight.arrivalTime}</div>
                 <div className="flyme-flight-cell">{flight.duration}</div>
                 <div className="flyme-flight-cell">{flight.stops}</div>

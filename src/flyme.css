@@ -847,6 +847,8 @@
 .flyme-mybookings-container {
   min-height: 100vh;
   background-color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
 }
 
 .flyme-header {
@@ -887,6 +889,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  flex: 1;
 }
 
 .flyme-mybookings-title {
