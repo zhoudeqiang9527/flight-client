@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// 移除未使用的导入
 import '../flyme.css';
 
 // 导入组件
@@ -16,7 +16,7 @@ interface Flight {
 }
 
 const FlymeReviewPage: React.FC = () => {
-  const navigate = useNavigate();
+  // 移除未使用的 useNavigate 钩子
   
   // 模拟航班数据
   const flights: Flight[] = [
@@ -55,7 +55,7 @@ const FlymeReviewPage: React.FC = () => {
   const handleContinue = () => {
     console.log('准备支付');
     // 这里可以添加导航到支付页面的逻辑
-    // navigate('/payment');
+    // 如果需要导航功能，可以重新导入 useNavigate
   };
 
   return (

@@ -13,18 +13,26 @@ import airlineLogoSvg from '../assets/figma/airline-logo.svg';
 const FlymeOutboundPage: React.FC = () => {
   // 模拟航班数据
   const [flights, setFlights] = useState<Flight[]>([]);
+  // 添加 from 和 to 状态
+  const [from, setFrom] = useState<string>('');
+  const [to, setTo] = useState<string>('');
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   
   useEffect(() => {
     const fetchFlights = async () => {
-        const from = searchParams.get('from') || '';
-        const to = searchParams.get('to') || '';
+        const fromParam = searchParams.get('from') || '';
+        const toParam = searchParams.get('to') || '';
         const date = searchParams.get('date') || '';
-      const response = await http.post<FlgihtResponse>('/api/flights', { from, to, date });
-      const data = response.data;
-      setFlights(data);
+        
+        // 更新状态
+        setFrom(fromParam);
+        setTo(toParam);
+        
+        const response = await http.post<FlgihtResponse>('/api/flights', { from: fromParam, to: toParam, date });
+        const data = response.data;
+        setFlights(data);
     };
     fetchFlights();
   }, []);

@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 
-// 导入SVG图标
-import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+// 移除未使用的 SVG 图标导入
 import http from '../services/http';
 
 const LoginPage: React.FC = () => {

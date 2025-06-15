@@ -4,8 +4,7 @@ import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 import http from '../services/http';
 
-// 导入SVG图标
-import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+// 移除未使用的 SVG 图标导入
 
 const RegisterPage: React.FC = () => {
   // 状态管理
@@ -21,7 +20,7 @@ const navigate = useNavigate();
     e.preventDefault();
     console.log({ email, password, firstName, lastName, country, phone });
     // 这里可以添加注册逻辑
-    const response = await http.post<CommonResponse>('/api/auth/register', { email, password,firstName,lastName,country,phone });
+    await http.post<CommonResponse>('/api/auth/register', { email, password,firstName,lastName,country,phone });
     navigate('/login');
   };
 

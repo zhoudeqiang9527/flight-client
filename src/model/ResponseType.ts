@@ -24,6 +24,12 @@ interface Flight{
     departure_date: string;
     departure_time: string;
     price: number;
+    // 添加缺少的属性
+    selected?: boolean;
+    airline?: string;
+    arrivalTime?: string;
+    duration?: string;
+    stops?: number;
 }
 
 interface FlgihtResponse {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// 移除未使用的 Link 导入
+import { useNavigate } from 'react-router-dom';
 import '../flyme.css';
 
 // 导入组件
@@ -10,10 +11,7 @@ interface TripType {
   label: string;
 }
 
-interface Location {
-  code: string;
-  name: string;
-}
+// 移除未使用的 Location 接口
 
 const FlymeSearchPage: React.FC = () => {
   const navigate = useNavigate();
