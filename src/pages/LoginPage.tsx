@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
+import http from '../services/http';
 
 // 移除未使用的 SVG 图标导入
 import http from '../services/http';
 
 const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
   // 状态管理
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
   // 处理表单提交
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     console.log({ username, password });
     try {
        const response = await http.post<LoginResponse>('/auth/login', { username, password });
@@ -23,6 +28,7 @@ const LoginPage: React.FC = () => {
        navigate('/search');
     } catch (error) {
       console.error(error);
+
     }
   };
 
@@ -89,13 +95,25 @@ const LoginPage: React.FC = () => {
                 <Link to="/forgot-password" className="flyme-login-forgot-link">Forgot username or password?</Link>
               </div>
 
+              {/* 错误信息显示 */}
+              {error && (
+                <div className="flyme-login-error">
+                  {error}
+                </div>
+              )}
+
               {/* 登录按钮 */}
               <div className="flyme-login-button-container">
                 <button
                   type="submit"
                   className="flyme-login-button"
+                  disabled={isLoading}
                 >
-                  <span className="flyme-login-button-text">Log in</span>
+                  {isLoading ? (
+                    <span className="flyme-login-button-loading">Logging in...</span>
+                  ) : (
+                    <span className="flyme-login-button-text">Log in</span>
+                  )}
                 </button>
               </div>
 

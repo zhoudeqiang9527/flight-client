@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FlymeNavbar from '../components/FlymeNavbar';
 
+
 const MyBookingsPage: React.FC = () => {
   // 模拟预订数据
   const bookings = [
@@ -34,6 +35,7 @@ const MyBookingsPage: React.FC = () => {
       price: '£200',
     },
   ];
+
 
   // 判断是否有预订
   const hasBookings = bookings.length > 0;
@@ -88,6 +90,7 @@ const MyBookingsPage: React.FC = () => {
                         <button className="flyme-mybookings-action-button flyme-mybookings-cancel-button">
                           Cancel
                         </button>
+
                       )}
                     </td>
                   </tr>
@@ -96,14 +99,17 @@ const MyBookingsPage: React.FC = () => {
             </table>
           </div>
         ) : (
+
           <div className="flyme-mybookings-empty">
             <p className="flyme-mybookings-empty-text">You don't have any bookings yet.</p>
             <Link to="/" className="flyme-mybookings-book-button">
+
               Book a Flight
             </Link>
           </div>
         )}
       </main>
+
 
       {/* 底部 */}
       <footer className="flyme-footer">
@@ -133,7 +139,11 @@ const MyBookingsPage: React.FC = () => {
           </div>
           <div className="flyme-footer-divider">
             &copy; {new Date().getFullYear()} FlyMe. All rights reserved.
+
           </div>
+        </div>
+        <div className="flyme-footer-copyright">
+          <p>&copy; {new Date().getFullYear()} FlyMe. All rights reserved.</p>
         </div>
       </footer>
     </div>

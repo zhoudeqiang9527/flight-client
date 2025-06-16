@@ -50,9 +50,16 @@ export const del = <T>(url: string, config?: AxiosRequestConfig): Promise<T> => 
   return http.delete(url, config).then((response: AxiosResponse<T>) => response.data);
 };
 
-export default {
+// 确保所有HTTP方法都使用相同的拦截器
+export const httpService = {
   get,
   post,
   put,
-  del,
+  delete: del,
 };
+
+// 导出类型以增强类型安全
+export type { AxiosRequestConfig as HttpRequestConfig };
+export type { AxiosResponse as HttpResponse };
+
+export default httpService;
