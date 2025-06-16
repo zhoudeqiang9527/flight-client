@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
+import http from '../services/http';
 
-// 导入SVG图标
-import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+// 移除未使用的 SVG 图标导入
 
 const RegisterPage: React.FC = () => {
   // 状态管理
@@ -14,12 +14,14 @@ const RegisterPage: React.FC = () => {
   const [lastName, setLastName] = useState('');
   const [country, setCountry] = useState('');
   const [phone, setPhone] = useState('');
-
+const navigate = useNavigate();
   // 处理表单提交
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password, firstName, lastName, country, phone });
     // 这里可以添加注册逻辑
+    await http.post<CommonResponse>('/api/auth/register', { email, password,firstName,lastName,country,phone });
+    navigate('/login');
   };
 
   return (

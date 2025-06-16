@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// 移除未使用的 Link 导入
 import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 
-// 导入SVG图标
-import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+// 移除未使用的 SVG 图标导入
 
 interface Booking {
   id: string;

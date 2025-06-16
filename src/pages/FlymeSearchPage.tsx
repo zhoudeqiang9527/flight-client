@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// 移除未使用的 Link 导入
+import { useNavigate } from 'react-router-dom';
 import '../flyme.css';
 
 // 导入组件
@@ -10,10 +11,7 @@ interface TripType {
   label: string;
 }
 
-interface Location {
-  code: string;
-  name: string;
-}
+// 移除未使用的 Location 接口
 
 const FlymeSearchPage: React.FC = () => {
   const navigate = useNavigate();
@@ -29,17 +27,9 @@ const FlymeSearchPage: React.FC = () => {
   // 模拟数据
   const tripTypes: TripType[] = [
     { value: 'roundtrip', label: '往返' },
-    { value: 'oneway', label: '单程' },
-    { value: 'multicity', label: '多城市' }
+    { value: 'oneway', label: '单程' },    
   ];
 
-  const locations: Location[] = [
-    { code: 'PEK', name: '北京' },
-    { code: 'SHA', name: '上海' },
-    { code: 'CAN', name: '广州' },
-    { code: 'SZX', name: '深圳' },
-    { code: 'CTU', name: '成都' }
-  ];
 
   // 处理搜索表单提交
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -52,8 +42,13 @@ const FlymeSearchPage: React.FC = () => {
       returnDate,
       passengers
     });
-    // 导航到航班选择页面
-    navigate('/outbound');
+    navigate(`/outbound?${new URLSearchParams({
+  ...(fromLocation && { from: fromLocation }),
+  ...(toLocation && { to: toLocation }),
+  ...(departDate && { date: departDate })
+}).toString()}`);
+
+    
   };
 
   return (

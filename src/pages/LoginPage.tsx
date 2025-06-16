@@ -4,8 +4,8 @@ import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 import http from '../services/http';
 
-// 导入SVG图标
-import flymeLogoSvg from '../assets/figma/flyme-logo.svg';
+// 移除未使用的 SVG 图标导入
+import http from '../services/http';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,25 +15,20 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
   // 处理表单提交
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    
+
+    console.log({ username, password });
     try {
-      const { data } = await http.post<{ token: string }>('/auth/login', {
-        username,
-        password
-      });
-      
-      // 保存token并跳转到首页
-      localStorage.setItem('token', data.token);
-      navigate('/');
-    } catch (err) {
-      setError('Login failed. Please check your credentials.');
-    } finally {
-      setIsLoading(false);
+       const response = await http.post<LoginResponse>('/auth/login', { username, password });
+       console.log(response);
+       localStorage.setItem('token', response.data.token);
+       navigate('/search');
+    } catch (error) {
+      console.error(error);
+
     }
   };
 
