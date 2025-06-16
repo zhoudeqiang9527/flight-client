@@ -44,7 +44,7 @@ jobs:
       - name: Register task definition
         id: task-def
         run: TASK_DEF_ARN=$(aws ecs register-task-definition --cli-input-json file://${{env.TASK_DEFINITION_FILE}} --query 'taskDefinition.taskDefinitionArn' --output text)
-        echo "Task definition ARN= $TASK_DEF_ARN" >> $GITHUB_ENV
+        echo "Task definition ARN= ${{ env.TASK_DEF_ARN }}" >> ${{ env.GITHUB_ENV }}
 
       - name: Update service
         run: aws esc update-service --cluster ${{env.ECS_CLUSTER_NAME}} --service ${{env.ECS_SERVICE_NAME}} --task-definition $TASK_DEF_ARN
