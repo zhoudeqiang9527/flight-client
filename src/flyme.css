@@ -1,0 +1,1085 @@
+/* FlyMe Search Page Styles */
+
+/* 全局样式 */
+.flyme-search {
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #121417;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 导航栏样式 */
+.flyme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  border-bottom: 1px solid #E5E8EB;
+}
+
+.flyme-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flyme-logo {
+  width: 14px;
+  height: 14px;
+}
+
+.flyme-nav {
+  display: flex;
+  align-items: center;
+}
+
+.flyme-nav-links {
+  display: flex;
+  gap: 24px;
+  margin-right: 24px;
+}
+
+.flyme-nav-link {
+  color: #121417;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.flyme-nav-link-active {
+  color: #3B82F6;
+  font-weight: 600;
+}
+
+.flyme-login-btn {
+  background-color: #F1F4F8;
+  color: #121417;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 主内容区域样式 */
+.flyme-main {
+  flex: 1;
+  padding: 40px;
+}
+
+.flyme-search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 搜索卡片样式 */
+.flyme-search-card {
+  background-color: #F8FAFC;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.flyme-search-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #121417;
+}
+
+.flyme-search-subtitle {
+  font-size: 14px;
+  color: #121417;
+  margin-bottom: 24px;
+}
+
+.flyme-search-button {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* 搜索表单样式 */
+.flyme-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-form-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.flyme-form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.flyme-form-label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #121417;
+}
+
+.flyme-form-input {
+  background-color: #F1F4F8;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #637887;
+  width: 100%;
+}
+
+.flyme-form-select {
+  background-color: #F1F4F8;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #637887;
+  width: 100%;
+  appearance: none;
+  background-image: url('../assets/figma/dropdown-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .flyme-header {
+    padding: 12px 20px;
+  }
+  
+  .flyme-main {
+    padding: 20px;
+  }
+  
+  .flyme-form-row {
+    flex-direction: column;
+  }
+}
+
+/* Outbound页面样式 */
+
+/* 容器样式 */
+.flyme-outbound-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 面包屑导航 */
+.flyme-breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.flyme-breadcrumb-link {
+  color: #637887;
+  text-decoration: none;
+}
+
+.flyme-breadcrumb-separator {
+  margin: 0 8px;
+  color: #637887;
+}
+
+.flyme-breadcrumb-current {
+  color: #121417;
+  font-weight: 500;
+}
+
+/* 页面标题 */
+.flyme-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #121417;
+}
+
+/* 航班列表 */
+.flyme-flight-list {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+/* 航班表头 */
+.flyme-flight-header {
+  display: flex;
+  padding: 16px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E8EB;
+}
+
+.flyme-flight-header-item {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #121417;
+}
+
+/* 航班项 */
+.flyme-flight-item {
+  display: flex;
+  padding: 16px;
+  border-bottom: 1px solid #E5E8EB;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.flyme-flight-item:last-child {
+  border-bottom: none;
+}
+
+.flyme-flight-item:hover {
+  background-color: #F8FAFC;
+}
+
+.flyme-flight-selected {
+  background-color: #F0F7FF;
+  border-left: 3px solid #3B82F6;
+}
+
+.flyme-flight-cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #121417;
+}
+
+/* 航空公司样式 */
+.flyme-flight-airline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flyme-airline-logo-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flyme-airline-logo {
+  width: 12px;
+  height: 12px;
+}
+
+/* 价格样式 */
+.flyme-flight-price {
+  font-weight: 700;
+}
+
+/* 继续按钮容器 */
+.flyme-continue-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* 继续按钮 */
+.flyme-continue-button {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.flyme-continue-button:hover {
+  background-color: #2563EB;
+}
+
+.flyme-continue-button:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .flyme-flight-item,
+  .flyme-flight-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .flyme-flight-cell {
+    justify-content: space-between;
+  }
+  
+  .flyme-flight-cell::before {
+    content: attr(data-label);
+    font-weight: 500;
+  }
+}
+
+/* Review页面样式 */
+.flyme-review-container {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.flyme-review-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.flyme-review-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-review-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #121417;
+  margin: 0;
+}
+
+.flyme-review-flight-card {
+  display: flex;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flyme-review-flight-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flyme-review-flight-cabin {
+  font-size: 14px;
+  color: #637887;
+}
+
+.flyme-review-flight-route {
+  font-size: 16px;
+  font-weight: 600;
+  color: #121417;
+}
+
+.flyme-review-flight-datetime {
+  font-size: 14px;
+  color: #637887;
+}
+
+.flyme-review-flight-airline-indicator {
+  width: 8px;
+  background-color: #3B82F6;
+}
+
+.flyme-review-flight-airline-indicator.green {
+  background-color: #10B981;
+}
+
+.flyme-review-fare-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E8EB;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flyme-review-fare-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #121417;
+}
+
+.flyme-review-fare-divider {
+  height: 1px;
+  background-color: #E5E8EB;
+  margin: 8px 0;
+}
+
+.flyme-review-fare-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  color: #121417;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .flyme-review-container {
+    padding: 0 16px;
+  }
+  
+  .flyme-review-flight-card {
+    flex-direction: column;
+  }
+  
+  .flyme-review-flight-airline-indicator {
+    width: 100%;
+    height: 4px;
+  }
+}
+
+/* 为BookingListPage添加的样式 */
+
+/* 预订标题容器 */
+.flyme-booking-title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem;
+}
+
+/* 预订标题 */
+.flyme-booking-title {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 28px;
+  line-height: 1.25em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* 标签容器 */
+.flyme-booking-tabs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* 标签按钮容器 */
+.flyme-booking-tabs-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+}
+
+/* 标签按钮 */
+.flyme-booking-tab {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  font-weight: 500;
+  color: #637887;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: 1rem;
+}
+
+/* 标签按钮激活状态 */
+.flyme-booking-tab.flyme-nav-link-active {
+  color: #3B82F6;
+  border-bottom-color: #3B82F6;
+}
+
+/* 预订列表容器 */
+.flyme-booking-list-container {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+/* 预订卡片 */
+.flyme-booking-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+/* 预订卡片内容 */
+.flyme-booking-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 608px;
+}
+
+/* 预订参考号 */
+.flyme-booking-reference {
+  font-size: 14px;
+  color: #637887;
+  font-family: 'Plus Jakarta Sans';
+}
+
+/* 预订路线 */
+.flyme-booking-route {
+  font-size: 16px;
+  font-weight: 700;
+  color: #121417;
+  font-family: 'Plus Jakarta Sans';
+}
+
+/* 预订日期 */
+.flyme-booking-date {
+  font-size: 14px;
+  color: #637887;
+  font-family: 'Plus Jakarta Sans';
+}
+
+/* 预订状态指示器 - 即将到来 */
+.flyme-booking-indicator-upcoming {
+  background-color: #3B82F6;
+  width: 8px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* 预订状态指示器 - 过去的 */
+.flyme-booking-indicator-past {
+  background-color: #10B981;
+  width: 8px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* 无预订提示 */
+.flyme-booking-empty {
+  text-align: center;
+  padding: 24px;
+  color: #637887;
+}
+
+/* 注册页面样式 */
+.flyme-register-container {
+  width: 960px;
+  padding: 20px 0;
+}
+
+.flyme-register-title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem;
+}
+
+.flyme-register-title {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 28px;
+  line-height: 1.25em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.flyme-register-form-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0.75rem;
+  justify-content: center;
+}
+
+.flyme-register-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 448px;
+}
+
+.flyme-register-label-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 0.5rem;
+}
+
+.flyme-register-label {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.flyme-register-input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #DEE0E3;
+  border-radius: 0.75rem;
+}
+
+.flyme-register-input {
+  width: 100%;
+  outline: none;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #6B7882;
+}
+
+.flyme-register-select {
+  width: 100%;
+  outline: none;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #121417;
+  appearance: none;
+  background-color: white;
+}
+
+.flyme-register-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 20px 0px 0px 30px;
+  width: 448px;
+  justify-content: center;
+}
+
+.flyme-register-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 1.5rem;
+  background-color: #B2D1E5;
+  height: 48px;
+}
+
+.flyme-register-button-text {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 700;
+  color: #121417;
+}
+
+.flyme-register-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 1rem;
+}
+
+.flyme-register-login-text {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #6B7882;
+  text-align: center;
+}
+
+/* 登录页面样式 */
+.flyme-login-container {
+  width: 960px;
+  padding: 20px 0;
+}
+
+.flyme-login-title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem;
+}
+
+.flyme-login-title {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 28px;
+  line-height: 1.25em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.flyme-login-form-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0.75rem;
+  justify-content: center;
+}
+
+.flyme-login-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 448px;
+}
+
+.flyme-login-label-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 0.5rem;
+}
+
+.flyme-login-label {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.flyme-login-input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #DEE0E3;
+  border-radius: 0.75rem;
+}
+
+.flyme-login-input {
+  width: 100%;
+  outline: none;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #6B7882;
+}
+
+.flyme-login-forgot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 1rem;
+}
+
+.flyme-login-forgot-link {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #6B7882;
+}
+
+.flyme-login-button-container {
+  display: flex;
+  padding: 0.75rem;
+  
+  justify-content: center;
+}
+
+.flyme-login-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  background-color: #B2D1E5;
+  height: 40px;
+}
+
+.flyme-login-button-text {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 700;
+  color: #121417;
+}
+
+.flyme-login-signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 1rem;
+}
+
+.flyme-login-signup-text {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 400;
+  color: #6B7882;
+  text-align: center;
+}
+
+.flyme-content-padding {
+  padding: 20px 160px;
+}
+
+/* MyBookingsPage 样式 */
+.flyme-mybookings-container {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+.flyme-header {
+  background-color: #3B82F6;
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.flyme-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flyme-header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.flyme-header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.flyme-header-link {
+  color: white;
+  font-weight: 500;
+}
+
+.flyme-header-link:hover {
+  text-decoration: underline;
+}
+
+.flyme-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+.flyme-mybookings-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1F2937;
+}
+
+.flyme-mybookings-table-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.flyme-mybookings-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.flyme-mybookings-table-header {
+  background-color: #F9FAFB;
+}
+
+.flyme-mybookings-table-th {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #6B7280;
+  letter-spacing: 0.05em;
+}
+
+.flyme-mybookings-table-body {
+  background-color: white;
+}
+
+.flyme-mybookings-table-row {
+  border-top: 1px solid #E5E7EB;
+}
+
+.flyme-mybookings-table-td {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+.flyme-mybookings-id {
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.flyme-mybookings-text {
+  color: #6B7280;
+}
+
+.flyme-mybookings-status {
+  display: inline-flex;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+
+.flyme-mybookings-status-confirmed {
+  background-color: #D1FAE5;
+  color: #065F46;
+}
+
+.flyme-mybookings-status-cancelled {
+  background-color: #FEE2E2;
+  color: #991B1B;
+}
+
+.flyme-mybookings-status-completed {
+  background-color: #F3F4F6;
+  color: #4B5563;
+}
+
+.flyme-mybookings-action-button {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.flyme-mybookings-view-button {
+  color: #3B82F6;
+  margin-right: 0.75rem;
+}
+
+.flyme-mybookings-view-button:hover {
+  color: #2563EB;
+}
+
+.flyme-mybookings-cancel-button {
+  color: #EF4444;
+}
+
+.flyme-mybookings-cancel-button:hover {
+  color: #DC2626;
+}
+
+.flyme-mybookings-empty {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.flyme-mybookings-empty-text {
+  color: #6B7280;
+  margin-bottom: 1rem;
+}
+
+.flyme-mybookings-book-button {
+  display: inline-block;
+  background-color: #3B82F6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.flyme-mybookings-book-button:hover {
+  background-color: #2563EB;
+}
+
+.flyme-footer {
+  background-color: #1F2937;
+  color: white;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.flyme-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flyme-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .flyme-footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.flyme-footer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.flyme-footer-subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.flyme-footer-text {
+  color: #9CA3AF;
+}
+
+.flyme-footer-link {
+  color: #9CA3AF;
+}
+
+.flyme-footer-link:hover {
+  color: white;
+}
+
+.flyme-footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flyme-footer-divider {
+  border-top: 1px solid #374151;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+  color: #9CA3AF;
+}
