@@ -4,8 +4,19 @@ import '../flyme.css';
 import FlymeNavbar from '../components/FlymeNavbar';
 import http from '../services/http';
 
-// 移除未使用的 SVG 图标导入
-import http from '../services/http';
+interface LoginResponse {
+  code:string;
+  message:string;
+  data:{
+    token:string;
+    email:string;
+    firstName:string;
+    lastName:string;
+    country:string;
+    phone:string;
+  }
+  
+}
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,10 +26,11 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const navigate = useNavigate();
   // 处理表单提交
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
 
     console.log({ username, password });
     try {
@@ -28,7 +40,9 @@ const LoginPage: React.FC = () => {
        navigate('/search');
     } catch (error) {
       console.error(error);
-
+      setError('登录失败，请检查用户名和密码');
+    } finally {
+      setIsLoading(false);
     }
   };
 
