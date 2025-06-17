@@ -29,8 +29,15 @@ const FlymeOutboundPage: React.FC = () => {
         // 更新状态
         setFrom(fromParam);
         setTo(toParam);
+
+        // 构建查询参数对象
+        const params = {
+            from: fromParam,
+            to: toParam,
+            departureDate: date
+        };
         
-        const response = await http.post<FlgihtResponse>('/api/flights', { from: fromParam, to: toParam, date });
+        const response = await http.get<FlgihtResponse>('/flights', { params });
         const data = response.data;
         setFlights(data);
     };
