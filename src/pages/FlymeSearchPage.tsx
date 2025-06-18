@@ -6,29 +6,18 @@ import '../flyme.css';
 // 导入组件
 import FlymeNavbar from '../components/FlymeNavbar';
 
-interface TripType {
-  value: string;
-  label: string;
-}
-
 // 移除未使用的 Location 接口
 
 const FlymeSearchPage: React.FC = () => {
   const navigate = useNavigate();
   
   // 定义状态
-  const [tripType, setTripType] = useState<string>('roundtrip');
+  const [tripType] = useState<string>('roundtrip');
   const [fromLocation, setFromLocation] = useState<string>('');
   const [toLocation, setToLocation] = useState<string>('');
   const [departDate, setDepartDate] = useState<string>('');
   const [returnDate, setReturnDate] = useState<string>('');
   const [passengers, setPassengers] = useState<number>(1);
-
-  // 模拟数据
-  const tripTypes: TripType[] = [
-    { value: 'roundtrip', label: '往返' },
-    { value: 'oneway', label: '单程' },    
-  ];
 
 
   // 处理搜索表单提交
