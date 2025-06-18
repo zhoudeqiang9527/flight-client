@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import '../flyme.css';
 import http from '../services/http';
@@ -19,6 +19,7 @@ const FlymeOutboundPage: React.FC = () => {
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const seletedFlightNumber = useRef<string | null>(null);
   
   useEffect(() => {
     const fetchFlights = async () => {
@@ -48,17 +49,25 @@ const FlymeOutboundPage: React.FC = () => {
   }, []);
   // 处理航班选择
   const handleFlightSelect = (id: string) => {
-    setFlights(flights.map(flight => ({
-      ...flight,
-      selected: flight.id === id
-    })));
+    setFlights(flights.map(flight => {
+      const isSelected = flight.id === id;
+      if (isSelected) {
+        seletedFlightNumber.current = flight.flight_number;
+      }
+      return {
+        ...flight,
+        selected: isSelected
+      };
+    }));
+    
   };
 
   // 处理继续按钮点击
   const handleContinue = () => {
     if (flights.some(flight => flight.selected)) {
+        const url = `/review?flightNo=${seletedFlightNumber.current}`;
       // 导航到Review页面
-      navigate('/review');
+      navigate(url);
     }
   };
 

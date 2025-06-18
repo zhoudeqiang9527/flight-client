@@ -74,23 +74,7 @@ const FlymeSearchPage: React.FC = () => {
             
             {/* 搜索表单 */}
             <form className="flyme-search-form" onSubmit={handleSearchSubmit}>
-              {/* 第一行：行程类型 */}
-              <div className="flyme-form-row">
-                <div className="flyme-form-group">
-                  <label htmlFor="trip-type" className="flyme-form-label">Trip type</label>
-                  <select 
-                    id="trip-type" 
-                    className="flyme-form-select"
-                    value={tripType}
-                    onChange={(e) => setTripType(e.target.value)}
-                  >
-                    {tripTypes.map((type) => (
-                      <option key={type.value} value={type.value}>{type.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              
+             
               {/* 第二行：出发地/目的地 */}
               <div className="flyme-form-row">
                 <div className="flyme-form-group">

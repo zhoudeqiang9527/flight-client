@@ -34,3 +34,8 @@ interface FlgihtResponse {
     message: string;
     data: Flight[];
 }
+
+interface PriceDetail{
+    label: string;
+    price: number;
+}
