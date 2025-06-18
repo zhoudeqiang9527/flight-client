@@ -19,14 +19,11 @@ interface LoginResponse {
 interface Flight{
     id: string;
     flight_number: string;
-    departure_airport_id: string;
-    destination_airport_id: string;
-    departure_date: string;
-    departure_time: string;
+    departure: string;
+    arrival: string;
+    departureTime: string;
     price: number;
-    // 添加缺少的属性
     selected?: boolean;
-    airline?: string;
     arrivalTime?: string;
     duration?: string;
     stops?: number;

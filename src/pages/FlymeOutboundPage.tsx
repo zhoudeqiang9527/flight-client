@@ -24,7 +24,8 @@ const FlymeOutboundPage: React.FC = () => {
     const fetchFlights = async () => {
         const fromParam = searchParams.get('from') || '';
         const toParam = searchParams.get('to') || '';
-        const date = searchParams.get('date') || '';
+        const departDate = searchParams.get('departDate') || '';
+        const returnDate = searchParams.get('returnDate') || '';
         
         // 更新状态
         setFrom(fromParam);
@@ -34,11 +35,13 @@ const FlymeOutboundPage: React.FC = () => {
         const params = {
             from: fromParam,
             to: toParam,
-            departureDate: date
+            departureDate: departDate,
+            returnDate: returnDate
         };
         
         const response = await http.get<FlgihtResponse>('/flights', { params });
         const data = response.data;
+        console.log(data);
         setFlights(data);
     };
     fetchFlights();
@@ -90,12 +93,12 @@ const FlymeOutboundPage: React.FC = () => {
           <div className="flyme-flight-list">
             {/* 表头 */}
             <div className="flyme-flight-header">
-              <div className="flyme-flight-header-item">Airline</div>
-              <div className="flyme-flight-header-item">Departure</div>
-              <div className="flyme-flight-header-item">Arrival</div>
-              <div className="flyme-flight-header-item">Duration</div>
-              <div className="flyme-flight-header-item">Stops</div>
-              <div className="flyme-flight-header-item">Price</div>
+              <div className="flyme-flight-header-item">航班</div>
+              <div className="flyme-flight-header-item">起飞时间</div>
+              <div className="flyme-flight-header-item">到达时间</div>
+              <div className="flyme-flight-header-item">航行时间</div>
+              <div className="flyme-flight-header-item">经停</div>
+              <div className="flyme-flight-header-item">价格</div>
             </div>
 
             {/* 航班项 */}
@@ -109,10 +112,10 @@ const FlymeOutboundPage: React.FC = () => {
                   <div className="flyme-airline-logo-container">
                     <img src={airlineLogoSvg} alt="Airline Logo" className="flyme-airline-logo" />
                   </div>
-                  <span>{flight.airline}</span>
+                  <span>{flight.flight_number}</span>
                 </div>
                 <div className="flyme-flight-cell">
-                    {flight.departure_airport_id}
+                    {flight.departureTime}
                 </div>
                 <div className="flyme-flight-cell">{flight.arrivalTime}</div>
                 <div className="flyme-flight-cell">{flight.duration}</div>

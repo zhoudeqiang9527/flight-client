@@ -45,7 +45,8 @@ const FlymeSearchPage: React.FC = () => {
     navigate(`/outbound?${new URLSearchParams({
   ...(fromLocation && { from: fromLocation }),
   ...(toLocation && { to: toLocation }),
-  ...(departDate && { date: departDate })
+  ...(departDate && { departDate: departDate }),
+  ...(returnDate && { returnDate: returnDate }),
 }).toString()}`);
 
     
